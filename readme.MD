@@ -6,6 +6,18 @@ WebSocketService.java is RestController
 When API receives the request , writing the POST request object to order-details-queue.
 And order-details-queue has a listener logic in Listener.java , where we're calling backend API and based on the response writing to a topic or storing into Mongo DB.
 
+## Build
+As we have still issue in testing
+
+```
+$ mvn clean package -Dmaven.test.skip=true
+```
+
+### run
+```
+$ mvn exec:java@order
+```
+
 ## Deploy to IBM Cloud Private
 From the code IBM team received we did:
 * develop a pom.xml to use maven to compile and package. We add dependencies for mongo, activeMQ, spring messaging.
