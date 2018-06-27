@@ -23,15 +23,29 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 	    private String mqUser;
 	    @Value("${spring.activemq.password}")
 	    private String mqPasword;
+	    @Value("${spring.activemq.host}")
+	    private String mqHost;
+	    @Value("${spring.activemq.port}")
+	    private int mqPort;
 
 	    @Override
 	    public void configureMessageBroker(final MessageBrokerRegistry config) {
+	    	//defaults:
+	    	if (mqHost == null)
+	    		mqHost="9.37.138.12";
+	    	if (mqPort <= 0 )
+	    		mqPort = 32004;
+	    	if (mqUser == null)
+	    		mqUser = "admin";
+	    	if (mqPasword == null)
+	    		mqPasword = "admin";
+	    	
 	    	 config.enableSimpleBroker("/topic", "/hello" ,"/user");
 	        config.enableStompBrokerRelay("/topic") //
-	        .setRelayHost("localhost") //
-	        .setRelayPort(61613) //
-	        .setClientLogin("admin") //
-	        .setClientPasscode("admin") //
+	        .setRelayHost(mqHost) //
+	        .setRelayPort(mqPort) //
+	        .setClientLogin(mqUser) //
+	        .setClientPasscode(mqPasword) //
 	        ;
 	        config.setApplicationDestinationPrefixes("/app");
 	    }

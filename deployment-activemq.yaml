@@ -1,0 +1,37 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sprint-activemq
+  labels:
+    app: sprint-activemq
+spec:
+  ports:
+  - name: activemq
+    protocol: TCP
+    port: 61613
+    targetPort: 61616
+  selector:
+    app: sprint-activemq
+  type: NodePort
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: sprint-activemq
+  name: sprint-activemq
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sprint-activemq
+    spec:
+      containers:
+      - image: webcenter/activemq
+        name: activemq
+        ports:
+        - containerPort: 61613
+          protocol: TCP

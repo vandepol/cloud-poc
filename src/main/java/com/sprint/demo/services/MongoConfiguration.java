@@ -10,17 +10,20 @@ import com.mongodb.MongoClient;
 
 @EnableMongoRepositories
 public class MongoConfiguration {
-	 @Value("${spring.mongodb.host}")
+	 @Value("${spring.data.mongodb.host}")
 	    protected String mongoHost;
 	   
-	    @Value("${spring.mongodb.port}")
+	    @Value("${spring.data.mongodb.port}")
 	    protected Integer mongoPort;
 	    
-	    @Value("${spring.mongodb.db}")
+	    @Value("${spring.data.mongodb.db}")
 	    protected String mongoDB;
 	    
 	    @Bean
 		public MongoTemplate mongoTemplate() throws Exception {
+	    	System.out.println(mongoHost);
+	    	System.out.println(mongoPort);
+	    	System.out.println(mongoDB);
 			return new MongoTemplate(new MongoClient(mongoHost,mongoPort.intValue()),mongoDB);
 		}
 	    

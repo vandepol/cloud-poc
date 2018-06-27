@@ -7,15 +7,14 @@ metadata:
     app: sprint-poc
 spec:
   ports:
-    ports:
-  - name: liberty
-    protocol: TCP
-    port: 9080
-    targetPort: 9080
-  - name: tomcat
-    protocol: TCP
-    port: 8080
-    targetPort: 8080
+    - name: liberty
+      protocol: TCP
+      port: 9080
+      targetPort: 9080
+    - name: tomcat
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
   selector:
     app: sprint-poc
   type: NodePort
@@ -39,11 +38,6 @@ spec:
         name: mongo
         ports:
         - containerPort: 27017
-          protocol: TCP
-      - image: webcenter/activemq
-        name: activemq
-        ports:
-        - containerPort: 61613
           protocol: TCP
       - image: mycluster.icp:8500/default/sprintpoc:latest
         name: sprint-poc
