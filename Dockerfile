@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 #IMAGE: Get the base image for Liberty
 FROM websphere-liberty:beta
@@ -17,3 +18,9 @@ RUN /opt/ibm/wlp/bin/installUtility install  --acceptLicense \
 	springBoot-2.0 \
 	websocket-1.1 \
 	servlet-3.1; exit 0
+=======
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+COPY target/order-mgt-0.0.1.jar app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+>>>>>>> 5cf511885910850fe7a03dcf83b4dcc26149bd80

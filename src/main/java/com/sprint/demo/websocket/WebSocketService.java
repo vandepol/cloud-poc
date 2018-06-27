@@ -24,7 +24,7 @@ import com.sprint.demo.models.ChatMessage;
 import com.sprint.demo.models.OrderDetails;
 
 @RestController
-public class WebScoketService {
+public class WebSocketService {
 	
 	@Autowired
     private SimpMessagingTemplate messagingTemplate;
