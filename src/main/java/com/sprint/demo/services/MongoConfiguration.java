@@ -16,11 +16,18 @@ public class MongoConfiguration {
 	    @Value("${spring.data.mongodb.port}")
 	    protected Integer mongoPort;
 	    
+<<<<<<< HEAD
 	    @Value("${spring.data.mongodb.database}")
+=======
+	    @Value("${spring.data.mongodb.db}")
+>>>>>>> 6a5e196d495d3a38c7bea5eb4d0248b605934879
 	    protected String mongoDB;
 	    
 	    @Bean
 		public MongoTemplate mongoTemplate() throws Exception {
+	    	System.out.println(mongoHost);
+	    	System.out.println(mongoPort);
+	    	System.out.println(mongoDB);
 			return new MongoTemplate(new MongoClient(mongoHost,mongoPort.intValue()),mongoDB);
 		}
 	    
