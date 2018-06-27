@@ -21,6 +21,24 @@ spec:
   type: NodePort
 
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sprint-poc
+  labels:
+    chart: sprint-poc
+data:
+  application.properies: /
+    spring.activemq.broker-url=tcp://localhost:61616
+    spring.activemq.user=admin
+    spring.activemq.password=admin
+    spring.data.mongodb.host=order-mongodb-ibm-mongodb-dev.sprint.svc.cluster.local
+    spring.data.mongodb.port=32599
+    spring.data.mongodb.database=orders
+    spring.data.mongodb.username=mongo
+    spring.data.mongodb.password=passw0rd
+
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -52,3 +70,11 @@ spec:
           protocol: TCP
         - containerPort: 8080
           protocol: TCP
+        volumeMounts:
+          - name: config
+            mountPath: application.properties
+        resources:
+          volumes:
+            - name: config
+            configMap:
+              name: sprint-poc

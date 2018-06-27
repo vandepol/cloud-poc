@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Compiled class file
 *.class
 
@@ -25,4 +24,3 @@ hs_err_pid*
 */target/*
 =======
 target/
->>>>>>> 5cf511885910850fe7a03dcf83b4dcc26149bd80

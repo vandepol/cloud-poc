@@ -10,13 +10,13 @@ import com.mongodb.MongoClient;
 
 @EnableMongoRepositories
 public class MongoConfiguration {
-	 @Value("${spring.mongodb.host}")
+	 @Value("${spring.data.mongodb.host}")
 	    protected String mongoHost;
 	   
-	    @Value("${spring.mongodb.port}")
+	    @Value("${spring.data.mongodb.port}")
 	    protected Integer mongoPort;
 	    
-	    @Value("${spring.mongodb.db}")
+	    @Value("${spring.data.mongodb.database}")
 	    protected String mongoDB;
 	    
 	    @Bean

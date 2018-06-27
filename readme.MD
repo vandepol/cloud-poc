@@ -1,5 +1,5 @@
 # Spring cloud adoption proof of concept
- 
+
 This application built using Spring Boot (web socket connection) , MongoDB , ActiveMQ , Maven
 WebSocketService.java is RestController
 /confirm-order is the API path
@@ -22,19 +22,19 @@ $ mvn exec:java@order
 From the code IBM team received we did:
 * develop a pom.xml to use maven to compile and package. We add dependencies for mongo, activeMQ, spring messaging.
 * add a Dockerfile to be able to start the Springboot app
-* Modify the code to get parameter from application.properties specially for mongo db. So we added a class MongoConfiguration, and the @Value annotation. 
+* Modify the code to get parameter from application.properties specially for mongo db. So we added a class MongoConfiguration, and the @Value annotation.
 ```java
 @EnableMongoRepositories
 public class MongoConfiguration {
-	 @Value("${spring.mongodb.host}")
+	 @Value("${spring.data.mongodb.host}")
 	    protected String mongoHost;
-	   
-	    @Value("${spring.mongodb.port}")
+
+	    @Value("${spring.data.mongodb.port}")
 	    protected String mongoPort;
-	    
-	    @Value("${spring.mongodb.db}")
+
+	    @Value("${spring.data.mongodb.database}")
 	    protected String mongoDB;
-	    
+
 	    @Bean
 		public MongoTemplate mongoTemplate() throws Exception {
 			return new MongoTemplate(new MongoClient(mongoHost,Integer.parseInt(mongoPort)),mongoDB);
@@ -67,8 +67,7 @@ $ export MONGOPORT=$(kubectl get svc --namespace sprint order-mongodb-ibm-mongod
 
 $ mongo ${MONGOHOST}:${MONGOPORT}/admin -u mongo -p $MONGOPASSWORD
 ```
-The IP address matches the kubernetes proxy address. 
+The IP address matches the kubernetes proxy address.
 
 ## Compendium
 * [Springboot mongodb getting started](https://spring.io/guides/gs/accessing-data-mongodb/)
-
